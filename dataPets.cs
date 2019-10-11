@@ -1,16 +1,25 @@
 class dataPets {
+
+  private string Especie;
   private string Raca;
   private int Idade;
-  private string Cor;
-  public string Nome;
-  public string Inf_Espec;
+  private string Localidade;
+  private string Porte;
 
-  public void setNome(string R){
-    Raca = R;
+  public void setEspecie(string Esp){
+    Especie = Esp;
+  }
+
+  public string getEspecie(){
+    return Especie;
+  }
+
+  public void setRaca(string Rac){
+    Raca = Rac;
   }
 
   public string getRaca(){
-    return R;
+    return Raca;
   }
 
   public void setIdade(int Age){
@@ -18,23 +27,34 @@ class dataPets {
   }
 
   public int getIdade(){
-    return Age;
+    return Idade;
   }
 
-  public void setCor(string C){
-    Cor = C;
+  public void setLocalidade(string Loc){
+    Localidade = Loc;
   }
 
-  public string getCor(){
-    Return C;
+  public string getLocalidade(){
+    return Localidade;
   }
 
-  public DataPets(string R, int Age, string C, string Nome, string Inf_Espec){
-    R = "Raça do pet";
-    Age = 0;
-    C = "Cor do pêlo";
-    Nome = "Nome do Pet";
-    Inf_Espec = "Alguma necessidade especial? ";
+  public void setPorte(string Pt){
+    Porte = Pt;
+  }
+
+  public string getPorte(){
+    return Porte;
+  }
+
+
+  public dataPets(string Espe, string Race, int age, string Local, string Por){
+
+    Especie = Espe;
+    Raca = Race;
+    Idade = age;
+    Localidade = Local;
+    Porte = Por;
+
   }
 }
 
