@@ -1,9 +1,9 @@
 class dataUser{
 
-  private string Nome;
-  private int Idade;
-  private string Telefone;
-  private string Localidade;
+  public string Nome;
+  public int Idade;
+  public string Telefone;
+  public string Localidade;
 
   public void setNome(string N){
     Nome = N;
