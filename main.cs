@@ -9,54 +9,87 @@ namespace Acesso{
     public static void Main (string[] args) {
 
       int Cadastrar;
-      FileStream DataSet = new FileStream ("usuarios.txt", FileMode.Open);
-      //FileStream Doador = new FileStream("doador.txt", FileMode.Open);
-      //FileStream Adotante = new FileStream("adotante.txt", FileMode.Open);
-      dataUser CadUser = new dataUser("Nome", 0, "Telefone", "cidade");
+      StreamWriter DataSet;
+      StreamReader Auth;
+      StreamReader GotAPet;
+      StreamWriter Doador;
+      //StreamWriter Adotante = new StreamWriter("adotante.txt", FileMode.Open);
+      dataUser CadUser = new dataUser("Nome", "Telefone", "cidade");
 
       Console.WriteLine ("Possui Cadastro em nosso sistema? ");
-      Console.WriteLine("Digite \n 1 - Não \n 2 - Sim");
+      Console.WriteLine("Digite \n 1 - NÃO \n 2 - SIM");
       Cadastrar = int.Parse(Console.ReadLine());
 
       switch(Cadastrar){
         case 1:
-          if(File.Exists("usuarios.txt")){
+            DataSet = File.AppendText("usuarios.txt");
             Console.WriteLine("Digite seu Nome: \n");
-            CadUser.Nome = Console.ReadLine().ToLower();
-            string nomeUsuario = CadUser.Nome;
-            byte[] info = new UTF8Encoding(true).GetBytes(nomeUsuario);
-            DataSet.Write(info);
-            Console.WriteLine("Sua idade: \n");
-            CadUser.Idade = int.Parse(Console.ReadLine());
-            //int idadeUsuario = CadUser.Idade;
-            //byte[] info1 = idadeUsuario.ConvertToByte(string);
-            //DataSet.Write(info1);
+            CadUser.Nome = Console.ReadLine().ToUpper();
+            DataSet.WriteLine(CadUser.Nome);
             Console.WriteLine("Telefone para contato: \n");
             CadUser.Telefone = Console.ReadLine();
-            string telUsuario = CadUser.Telefone;
-            byte[] info2 = new UTF8Encoding(true).GetBytes(telUsuario);
-            DataSet.Write(info2);
+            DataSet.WriteLine(CadUser.Telefone);
             Console.WriteLine("Digite o nome da sua cidade: \n");
-            CadUser.Localidade = Console.ReadLine().ToLower();
-            string locUsuario = CadUser.Localidade;
-            byte[] info3 = new UTF8Encoding(true).GetBytes(locUsuario);
-            DataSet.Write(info3);
-          }
+            CadUser.Localidade = Console.ReadLine().ToUpper();
+            DataSet.WriteLine(CadUser.Localidade);
+
+            DataSet.Close();
           break;
+            
         case 2:
-          if(File.Exists("usarios.txt")){
+            Auth = File.OpenText("usuarios.txt");
             Console.WriteLine("Confirme seu telefone cadastrado: \n");
             CadUser.Telefone = Console.ReadLine();
-            Stream AuthUser = File.Open("usuarios.txt", FileMode.Open);
-            StreamReader Auth = new StreamReader(AuthUser);
-            string linha = Auth.ReadLine();
-             
+            //string linha = Auth.ReadLine();
+
+            while(Auth.EndOfStream != true){
+              string linha = Auth.ReadLine();
+              if(linha.Contains(CadUser.Telefone)){
+                Console.WriteLine("Dados confirmados! \n Seja bem vindo ao My Pet");
+              }
+              //Console.WriteLine(linha.Contains(CadUser.Telefone));
+
             }
+             
+              Auth.Close();
           break;  
           }  
-      }
 
+      Console.WriteLine("Gostaria de Doar ou Adotar um Pet? ");
+      Console.WriteLine("Digite: \n 1 - DOAR \n 2 - ADOTAR");
+      Cadastrar = int.Parse(Console.ReadLine());
+      switch(Cadastrar){
+        case 1:
+
+            Doador = File.AppendText("doador.txt");
+            Console.WriteLine("Digite a espécie? GATO \n CACHORRO: ");
+            dataPets.Especie = Console.ReadLine().ToUpper();
+            Console.WriteLine("Qual a raça? ");
+            dataPets.Raca = Console.ReadLine().ToUpper();
+            Console.WriteLine("Idade do Pet: ");
+            dataPets.Idade = int.Parse(Console.ReadLine());
+            Console.WriteLine("Cidade do Doador");
+            dataPets.Localidade = Console.ReadLine().ToUpper();
+            Console.WriteLine("Qual o porte? \n PEQUENO \n MEDIO \n GRANDE");
+            dataPets.Porte = Console.ReadLine().ToUpper;
+
+
+            Doador.Close();
+
+          break;
+
+        case 2: 
+
+            GotAPet = File.AppendText("doador.txt");
+            Console.WriteLine("Quer adotar gato ou cachorro? ");
+            string tipoPet = GotAPet.ReadLine().ToUpper();
+            while(GotAPet.EndOfStream != true){
+              Console.WriteLine(tipoPet.Contains(dataPets.Especie));
+            }
+            
+      }    
     }
   }
+}  
 
 

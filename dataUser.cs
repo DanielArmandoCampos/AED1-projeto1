@@ -1,7 +1,6 @@
 class dataUser{
 
   public string Nome;
-  public int Idade;
   public string Telefone;
   public string Localidade;
 
@@ -11,14 +10,6 @@ class dataUser{
 
   public string getNome(){
     return Nome;
-  }
-
-  public void setIdade(int Age){
-    Idade = Age;
-  }
-
-  public int getAge(){
-    return Idade;
   }
 
   public void setTelefone(string Tel){
@@ -37,9 +28,8 @@ class dataUser{
     return Localidade;
   }
 
-  public dataUser (string N, int Age, string Tel, string Loc){
+  public dataUser (string N, string Tel, string Loc){
     Nome = N;
-    Idade = Age;
     Telefone = Tel;
     Localidade = Loc;
   }

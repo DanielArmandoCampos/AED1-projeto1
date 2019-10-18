@@ -1,10 +1,10 @@
 class dataPets {
 
-  private string Especie;
-  private string Raca;
-  private int Idade;
-  private string Localidade;
-  private string Porte;
+  public string Especie;
+  public string Raca;
+  public int Idade;
+  public string Localidade;
+  public string Porte;
 
   public void setEspecie(string Esp){
     Especie = Esp;
