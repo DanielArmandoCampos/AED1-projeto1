@@ -11,8 +11,7 @@ namespace Acesso{
       int Cadastrar;
       StreamWriter DataSet;
       StreamReader Auth;
-      StreamReader GotAPet;
-      StreamWriter Doador;
+      //StreamWriter Doador = new StreamWriter("doador.txt", FileMode.Open);
       //StreamWriter Adotante = new StreamWriter("adotante.txt", FileMode.Open);
       dataUser CadUser = new dataUser("Nome", "Telefone", "cidade");
 
@@ -44,52 +43,16 @@ namespace Acesso{
 
             while(Auth.EndOfStream != true){
               string linha = Auth.ReadLine();
-              if(linha.Contains(CadUser.Telefone)){
-                Console.WriteLine("Dados confirmados! \n Seja bem vindo ao My Pet");
-              }
-              //Console.WriteLine(linha.Contains(CadUser.Telefone));
+              Console.WriteLine(linha);
 
             }
              
               Auth.Close();
           break;  
           }  
+      }
 
-      Console.WriteLine("Gostaria de Doar ou Adotar um Pet? ");
-      Console.WriteLine("Digite: \n 1 - DOAR \n 2 - ADOTAR");
-      Cadastrar = int.Parse(Console.ReadLine());
-      switch(Cadastrar){
-        case 1:
-
-            Doador = File.AppendText("doador.txt");
-            Console.WriteLine("Digite a espécie? GATO \n CACHORRO: ");
-            dataPets.Especie = Console.ReadLine().ToUpper();
-            Console.WriteLine("Qual a raça? ");
-            dataPets.Raca = Console.ReadLine().ToUpper();
-            Console.WriteLine("Idade do Pet: ");
-            dataPets.Idade = int.Parse(Console.ReadLine());
-            Console.WriteLine("Cidade do Doador");
-            dataPets.Localidade = Console.ReadLine().ToUpper();
-            Console.WriteLine("Qual o porte? \n PEQUENO \n MEDIO \n GRANDE");
-            dataPets.Porte = Console.ReadLine().ToUpper;
-
-
-            Doador.Close();
-
-          break;
-
-        case 2: 
-
-            GotAPet = File.AppendText("doador.txt");
-            Console.WriteLine("Quer adotar gato ou cachorro? ");
-            string tipoPet = GotAPet.ReadLine().ToUpper();
-            while(GotAPet.EndOfStream != true){
-              Console.WriteLine(tipoPet.Contains(dataPets.Especie));
-            }
-            
-      }    
     }
   }
-}  
 
 
