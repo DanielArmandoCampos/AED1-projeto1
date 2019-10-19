@@ -50,7 +50,17 @@ namespace Acesso{
               if(linha.Contains(CadUser.Telefone)){
                 Console.WriteLine("Dados confirmados! \n Seja bem vindo ao My Pet!");
               }
-              //Console.WriteLine(linha.Contains(CadUser.Telefone));
+              else if(!linha.Contains(CadUser.Telefone)){
+                int cont =3;
+                for(int i=0;i<cont;i++){
+                  Console.WriteLine("Telefone não encontrado. Digite um número válido!");
+                  Console.WriteLine("Confirme seu telefone cadastrado: \n");
+                  CadUser.Telefone = Console.ReadLine();
+                  cont = cont -1;
+                  Console.WriteLine("Você tem " + cont + " tentativas restantes!");
+                
+                }  
+              }
 
             }
              
