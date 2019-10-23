@@ -2,7 +2,6 @@ class dataPets {
 
   public string Especie;
   public string Raca;
-  public int Idade;
   public string Localidade;
   public string Porte;
 
@@ -22,14 +21,6 @@ class dataPets {
     return Raca;
   }
 
-  public void setIdade(int Age){
-    Idade = Age;
-  }
-
-  public int getIdade(){
-    return Idade;
-  }
-
   public void setLocalidade(string Loc){
     Localidade = Loc;
   }
@@ -47,11 +38,10 @@ class dataPets {
   }
 
 
-  public dataPets(string Espe, string Race, int age, string Local, string Por){
+  public dataPets(string Espe, string Race, string Local, string Por){
 
     Especie = Espe;
     Raca = Race;
-    Idade = age;
     Localidade = Local;
     Porte = Por;
 

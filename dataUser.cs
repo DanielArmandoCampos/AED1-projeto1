@@ -3,6 +3,7 @@ class dataUser{
   public string Nome;
   public string Telefone;
   public string Localidade;
+  public string Email;
 
   public void setNome(string N){
     Nome = N;
@@ -28,9 +29,18 @@ class dataUser{
     return Localidade;
   }
 
-  public dataUser (string N, string Tel, string Loc){
+  public void setEmail(string Mail){
+    Email = Mail;
+  }
+
+  public string getEmail(){
+    return Email;
+  }
+
+  public dataUser (string N, string Tel, string Loc, string Mail){
     Nome = N;
     Telefone = Tel;
     Localidade = Loc;
+    Email = Mail;
   }
 }
