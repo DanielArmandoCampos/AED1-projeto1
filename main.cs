@@ -42,7 +42,7 @@ namespace Acesso{
       StreamWriter Doador;
       StreamWriter Adotante;
 
-      Console.WriteLine("Olá! Seja bem vindo ao nosso sistema! \n");
+      Console.WriteLine("Olá! Seja bem vindo ao MyPet! \n");
 
       Console.WriteLine ("Já possui cadastro? ");
       Console.WriteLine("Digite \n 1 - NÃO \n 2 - SIM");
@@ -82,7 +82,7 @@ namespace Acesso{
             while(Auth.EndOfStream != true){
               string linha = Auth.ReadLine();
               if(linha.Contains(CadUser.Telefone)){
-                Console.WriteLine("Dados confirmados! \n Seja bem vindo ao My Pet!");
+                Console.WriteLine("Dados confirmados! \n Seja bem vindo ao MyPet!");
               }
               
             }
@@ -115,7 +115,7 @@ namespace Acesso{
             CadPets.Porte = Console.ReadLine().ToUpper();
             Doador.WriteLine(CadPets.Porte);
 
-            Console.WriteLine("Pet Cadastrado. Daremos o melhor cuidado! ");
+            Console.WriteLine("Pet Cadastrado. Daremos ao PET o melhor cuidador! ");
 
             Doador.Close();
 
@@ -148,7 +148,7 @@ namespace Acesso{
                       DBPets[i,1] == CadPets.Raca &&
                       DBPets[i,2] == CadPets.Localidade &&
                       DBPets[i,3] == CadPets.Porte ){
-                  Console.WriteLine("Existe");
+                  Console.WriteLine("Pet Encontrado");
                 }
             }
             Adotante.Close();
