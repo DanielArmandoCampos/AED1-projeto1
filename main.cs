@@ -15,7 +15,7 @@ namespace Acesso{
       dataUser CadUser = new dataUser("Nome", "Telefone", "cidade","Email");
 
       string [,] DBUser = new string [1000,4];
-
+      
       DBUser[0,0] = CadUser.Nome;
       DBUser [0,1] = CadUser.Telefone;
       DBUser[0,2] = CadUser.Localidade;
@@ -23,17 +23,28 @@ namespace Acesso{
 
       string [,] DBPets = new string [1000,4];
 
+      for (int i = 0; i < 1000; i++)
+      {
+          for (int x = 0; x < 4; x++)
+          {
+              DBPets[i, x] = "";
+          }
+      }
       DBPets[0,0] = CadPets.Especie;
       DBPets [0,1] = CadPets.Raca;
       DBPets[0,2] = CadPets.Localidade;
       DBPets[0,3] = CadPets.Porte;
 
+
+
       StreamWriter DataSet;
       StreamReader Auth;
       StreamWriter Doador;
-      StreamReader Adotante;
+      StreamWriter Adotante;
 
-      Console.WriteLine ("Possui Cadastro em nosso sistema? ");
+      Console.WriteLine("Olá! Seja bem vindo ao nosso sistema! \n");
+
+      Console.WriteLine ("Já possui cadastro? ");
       Console.WriteLine("Digite \n 1 - NÃO \n 2 - SIM");
       Cadastrar = int.Parse(Console.ReadLine());
 
@@ -112,33 +123,37 @@ namespace Acesso{
 
         case 2: 
 
-            Adotante = File.OpenText("doador.txt");
+            Console.WriteLine( DBPets.ToString() );
+
+            Adotante = File.AppendText("adotante.txt");
 
             Console.WriteLine("Prefere GATO ou CACHORRO? - Digite sua escolha");
             CadPets.Especie = Console.ReadLine().ToUpper();
+            Adotante.WriteLine(CadPets.Especie);
 
             Console.WriteLine("Raça preferida: ");
             CadPets.Raca = Console.ReadLine().ToUpper();
+            Adotante.WriteLine(CadPets.Raca);
 
             Console.WriteLine("Nome da Cidade que procura o Pet: ");
             CadPets.Localidade = Console.ReadLine().ToUpper();
+            Adotante.WriteLine(CadPets.Localidade);
 
             Console.WriteLine("Porte: PEQUENO - MEDIO - GRANDE ? ");
             CadPets.Porte = Console.ReadLine().ToUpper();
-
-            for(int i = 0;i <DBPets.Length;i++){
-              for(int j = 0; j<DBPets.Length;j++){
-                if(DBPets[i,j].ToString() == CadPets.Especie && DBPets[i,j].ToString() == CadPets.Raca){
-                  Console.WriteLine("Pet Encontrado!");
-                  Console.WriteLine("Entraremos em contato para agendar a adoção! ");
-                  Console.WriteLine("Parabéns por escolher cuidar!");
+            Adotante.WriteLine(CadPets.Porte);
+            
+            for(int i = 0; i < 1000; i++){
+                  if( DBPets[i,0] == CadPets.Especie &&
+                      DBPets[i,1] == CadPets.Raca &&
+                      DBPets[i,2] == CadPets.Localidade &&
+                      DBPets[i,3] == CadPets.Porte ){
+                  Console.WriteLine("Existe");
                 }
-
-              }
             }
             Adotante.Close();
           break;  
-            }
+        }
             
       }    
     }
