@@ -76,9 +76,16 @@ namespace Acesso{
         case 2:
             Auth = File.OpenText("usuarios.txt");
             Console.WriteLine("Confirme seu telefone cadastrado: \n");
-            CadUser.Telefone = Console.ReadLine();
-
-
+            
+            string tel = Console.ReadLine();
+            CadUser.Telefone = tel;
+            while (tel.Length<9){
+              Console.WriteLine("erro");
+              Console.WriteLine("Confirme seu telefone cadastrado: \n");
+             
+              tel = Console.ReadLine();
+              CadUser.Telefone = tel;
+            }
             while(Auth.EndOfStream != true){
               string linha = Auth.ReadLine();
               if(linha.Contains(CadUser.Telefone)){
@@ -86,10 +93,10 @@ namespace Acesso{
               }
               
             }
-             
+            
               Auth.Close();
           break;  
-          }  
+          }
 
       Console.WriteLine("Gostaria de Doar ou Adotar um Pet? ");
       Console.WriteLine("Digite: \n 1 - DOAR \n 2 - ADOTAR");
