@@ -8,9 +8,35 @@ namespace Acesso{
 
   class MainClass {
 
+
+
+    public static bool verifTel(string telefone){
+      StreamReader Auth;
+      Auth = File.OpenText("usuarios.txt");
+
+      string linha;
+
+      while(Auth.EndOfStream != true){
+        linha = Auth.ReadLine();
+        if(linha.Contains(telefone)){
+          return true;
+
+        }
+
+      }
+
+      Auth.Close();
+
+      return false;
+    }
+
     public static void Main (string[] args) {
 
       int Cadastrar;
+
+      StreamWriter DataSet;
+      StreamWriter Doador;
+      StreamWriter Adotante;
 
       List<string> contaAdocao = new List<string>();
       List<string> contaDoacao = new List<string>();
@@ -18,11 +44,6 @@ namespace Acesso{
       dataPets CadPets = new dataPets("ESPECIE","RAÇA","CIDADE","PORTE");
       dataUser CadUser = new dataUser("Nome", "Telefone", "cidade","Email");
 
-
-      StreamWriter DataSet;
-      StreamReader Auth;
-      StreamWriter Doador;
-      StreamWriter Adotante;
 
       Console.WriteLine("Olá! Seja bem vindo ao MyPet! \n");
 
@@ -56,37 +77,36 @@ namespace Acesso{
           break;
             
         case 2:
-            Auth = File.OpenText("usuarios.txt");
+            string x;
+
             Console.WriteLine("Confirme seu telefone cadastrado: \n");
-            
-            string tel = Console.ReadLine();
-            CadUser.Telefone = tel;
-            while (tel.Length<9){
-              Console.WriteLine("erro");
-              Console.WriteLine("Confirme seu telefone cadastrado: \n");
-             
-              tel = Console.ReadLine();
-              CadUser.Telefone = tel;
-            }
-            while(Auth.EndOfStream != true){
-              string linha = Auth.ReadLine();
-              if(linha.Contains(CadUser.Telefone)){
-                Console.WriteLine("Dados confirmados! \n Seja bem vindo ao MyPet!");
-              }
+            x = Console.ReadLine();
+
+            if(verifTel(x)) {
               
+              Console.WriteLine("Telefone encontrado");
+
+            } 
+            else{
+
+              Console.WriteLine("Telefone não encontrado");
+              while(verifTel(x)== false){
+                Console.WriteLine("Digite novamente: ");
+                x = Console.ReadLine();
+              }
             }
-            
-              Auth.Close();
 
           break;
 
           }
 
-      Console.WriteLine("Gostaria de Doar ou Adotar um Pet? ");
-      Console.WriteLine("Digite: \n 1 - DOAR \n 2 - ADOTAR");
-      Cadastrar = int.Parse(Console.ReadLine());
+      
+      int s;
 
-      switch(Cadastrar){
+      Console.WriteLine("Gostaria de Adotar ou Doar um Pet? \n Digite: 1 - DOAR  2 - ADOTAR");
+      s = int.Parse(Console.ReadLine());
+
+      switch(s){
 
         case 1:
 
@@ -111,7 +131,7 @@ namespace Acesso{
             CadPets.Porte = Console.ReadLine().ToUpper();
             contaDoacao.Add(CadPets.Porte);
             Doador.WriteLine(CadPets.Porte);
-
+            
             Console.WriteLine("Pet Cadastrado. Daremos ao PET o melhor cuidador! ");
 
             Doador.Close();
@@ -141,7 +161,9 @@ namespace Acesso{
             CadPets.Porte = Console.ReadLine().ToUpper();
             Adotante.WriteLine(CadPets.Porte);
             contaAdocao.Add(CadPets.Porte);
-            
+
+            Console.WriteLine("Obrigado por Adotar! Cuide bem do seu Pet");           
+
             Adotante.Close();
           break;  
         }
@@ -167,6 +189,7 @@ namespace Acesso{
               int Count = 0;
 
               foreach(var i in contaAdocao){
+
                 Console.WriteLine("Filtrar qtd por espécie: 1 - GATO 2 - CACHORRO");
                 CadPets.Especie = Console.ReadLine().ToUpper();
                   if(i == CadPets.Especie){
